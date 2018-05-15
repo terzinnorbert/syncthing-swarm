@@ -1,0 +1,28 @@
+version: '2'
+services:
+  syncthing-1:
+    build:
+      context: .
+    volumes:
+      - ./config/1:/root/.config/syncthing
+    networks:
+      - proxy-tier
+  syncthing-2:
+    build:
+      context: .
+    volumes:
+      - ./config/2:/root/.config/syncthing
+    networks:
+      - proxy-tier
+  syncthing-3:
+    build:
+      context: .
+    volumes:
+      - ./config/3:/root/.config/syncthing
+    networks:
+      - proxy-tier
+
+networks:
+  proxy-tier:
+    external:
+      name: nginx-proxy
